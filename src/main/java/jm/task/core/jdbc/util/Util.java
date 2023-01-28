@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import static org.hibernate.cfg.AvailableSettings.HBM2DDL_AUTO;
+
 //Класс Util должен содержать логику настройки соединения с базой данных
 
 //В класс Util должна быть добавлена конфигурация для Hibernate ( рядом с JDBC), без использования xml.
@@ -53,6 +55,9 @@ public class Util {
                 settings.put(Environment.USER, USER);
                 settings.put(Environment.PASS, PASSWORD);
                 settings.put(Environment.DIALECT, DIALECT);
+                settings.put(Environment.SHOW_SQL, "true");
+                settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+                settings.put(HBM2DDL_AUTO, "");
 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);

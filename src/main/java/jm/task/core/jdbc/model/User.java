@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity     // класс будет отображаться в БД
 @Table(name = "usersTable")     //к какой таблице привяжем класс
 public class User {     //МОДЕЛЬ, которая хранит данные
-    @Id     // этот столбец в таблице является Primary key
+         // этот столбец в таблице является Primary key
+    @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
-    @SequenceGenerator(name = "id_generator", sequenceName = "id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;        //Все поля должны быть private
 
     @Column(name = "name")      // к какому столбцу из таблицы привяжем поле
@@ -31,6 +31,10 @@ public class User {     //МОДЕЛЬ, которая хранит данные
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public User(long id) {
+        this.id = id;
     }
 
     public Long getId() {
