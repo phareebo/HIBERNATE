@@ -16,7 +16,7 @@ public class Main {
         //userService.saveUser("Синий", "Леонардо", (byte) 15);       //каждого добавления должен быть
         //userService.saveUser("Фиолетовый", "Донателло", (byte) 15); //вывод в консоль (User с именем –
                                                                                     //name добавлен в базу данных)
-        userService.getAllUsers();      //Получение всех User из базы и вывод в консоль ( должен быть переопределен
+        //userService.getAllUsers();      //Получение всех User из базы и вывод в консоль ( должен быть переопределен
                                                 //toString в классе User)
         //userService.cleanUsersTable();  //Очистка таблицы User(ов)
 

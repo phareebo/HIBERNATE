@@ -54,7 +54,7 @@ public class UserDaoHibernateImpl implements UserDao {  // должен реал
     public void dropUsersTable() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.createSQLQuery("DROP TABLE IF EXISTS pp1;").executeUpdate();
+            session.createSQLQuery("DROP TABLE IF EXISTS usersTable;").executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class UserDaoHibernateImpl implements UserDao {  // должен реал
     public void removeUserById(long id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.delete(new User(id));
+            session.createQuery("delete User where id = (" + id + ")").executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,9 +90,8 @@ public class UserDaoHibernateImpl implements UserDao {  // должен реал
         List<User> users = null;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            users = (List<User>) session.createSQLQuery("SELECT * FROM usersTable").list();
-
-            System.out.printf(users.toString());
+            users = session.createQuery("from User").getResultList();
+            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,7 +103,7 @@ public class UserDaoHibernateImpl implements UserDao {  // должен реал
     public void cleanUsersTable() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.createSQLQuery("DELETE FROM usersTable").executeUpdate();
+            session.createQuery("delete User").executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

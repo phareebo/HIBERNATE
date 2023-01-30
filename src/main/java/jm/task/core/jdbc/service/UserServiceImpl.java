@@ -31,6 +31,10 @@ public class UserServiceImpl implements UserService {   //КОНТРОЛЛЕР
     }
 
     public List<User> getAllUsers() {
+        List<User> users = userDaoHibernateImpl.getAllUsers();
+        for (User u: users) {
+            System.out.println(u);
+        }
         return userDaoHibernateImpl.getAllUsers();
     }
 
